@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>تکمیل خرید | iPhone Store</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: auto;
+            /* یا scroll */
+            position: static;
+            /* نباید fixed باشه */
+        }
+
+        body {
+            margin: 0;
+            font-family: "Vazirmatn", sans-serif;
+            background: radial-gradient(circle at top, #0f0f0f, #000);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .checkout-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 50px 40px;
+            width: 420px;
+            box-shadow: 0 0 25px rgba(0, 255, 200, 0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            background: linear-gradient(90deg, #00fff2, #00aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 200, 0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(90deg, #00fff2, #00aaff);
+            color: #000;
+            transition: 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(0, 255, 200, 0.6);
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(90deg, #00fff2, #00aaff);
+            color: #000;
+            transition: 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #00fff2;
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 50px;
+            color: #00fff2;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 10px #00fff2;
+            }
+
+            50% {
+                text-shadow: 0 0 30px #00fff2;
+            }
+
+            100% {
+                text-shadow: 0 0 10px #00fff2;
+            }
+        }
+    </style>
+    <script>
+        const form = document.getElementById('checkoutForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // جلوگیری از ارسال معمولی فرم
+
+            // گرفتن اطلاعات فرم
+            const order = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                payment: document.getElementById('payment').value
+            };
+
+            // ذخیره در localStorage
+            localStorage.setItem('lastOrder', JSON.stringify(order));
+
+            // رفتن به صفحه success.html
+            window.location.href = 'success.html';
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="checkout-container">
+        <div class="icon">🛒</div>
+        <h2>تکمیل اطلاعات سفارش</h2>
+        <form action="success.html" method="POST">
+            <label>نام و نام خانوادگی</label>
+            <input type="text" required>
+
+            <label>شماره تماس</label>
+            <input type="tel" required>
+
+            <label>آدرس کامل</label>
+            <textarea rows="3" required></textarea>
+
+            <label>روش پرداخت</label>
+            <select required>
+                <option>پرداخت در محل</option>
+                <option>پرداخت آنلاین</option>
+            </select>
+
+            <a href="success.html" class="back-btn">تایید و ثبت سفارش</a>
+
+        </form>
+        <a href="site apple3.html" class="back-btn">بازگشت به فروشگاه</a>
+    </div>
+
+
+</body>
+
+</html>
